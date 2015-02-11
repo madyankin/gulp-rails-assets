@@ -9,9 +9,6 @@ var objectAssign  = require('object-assign');
 var file          = require('vinyl-file');
 
 var PLUGIN_NAME   = 'gulp-rails-manifest';
-var storage = {
-  files: {}
-};
 
 
 function getHash(str) {
@@ -19,21 +16,30 @@ function getHash(str) {
 }
 
 
-function addToManifest(manifest, firstFile, file, opts) {
-  var origPath  = relPath(firstFile.assetOrigBase, file.assetOrigPath);
-  var path      = relPath(firstFile.base, file.path);
-
-  manifest.files[path] = {
-    'logical_path': origPath,
-    'mtime':        new Date(fs.statSync(file.path).mtime).toJSON(),
-    'size':         file.contents.length,
-    'digest':       getHash(file.contents)
-  };
-  manifest.assets[origPath] = path;
+function transformFilename(file) {
+  file.assetOrigPath  = file.path;
+  var hash            = getHash(file.contents);
+  var ext             = path.extname(file.path);
+  var filename        = path.basename(file.path, ext) + '-' + hash + ext;
+  file.path           = path.join(path.dirname(file.path), filename);
 }
 
 
-function mergeManifest(oldManifest, manifest, opts) {
+function addToManifest(manifest, oldName, file) {
+  var name = file.path.replace(file.base, '');
+  if (name.indexOf('/') == 0) name = name.slice(1);
+
+  manifest.files[name] = {
+    'logical_path': oldName,
+    'mtime':        new Date(fs.statSync(file.assetOrigPath).mtime).toJSON(),
+    'size':         file.contents.length,
+    'digest':       getHash(file.contents)
+  };
+  manifest.assets[oldName] = name;
+}
+
+
+function mergeManifest(oldManifest, manifest) {
   var merged  = {};
   var files   = {};
 
@@ -52,43 +58,73 @@ function mergeManifest(oldManifest, manifest, opts) {
 }
 
 
-function transformFilename(file) {
-  // save the old path for later
-  file.assetOrigPath = file.path;
-  file.assetOrigBase = file.base;
-
-  var hash      = file.assetHash = getHash(file.contents);
-  var ext       = path.extname(file.path);
-  var filename  = path.basename(file.path, ext) + '-' + hash + ext;
-  file.path     = path.join(path.dirname(file.path), filename);
+function getManifestFile(opts, cb) {
+  file.read(opts.path, opts, function(err, manifest) {
+    if (err) {
+      if (err.code === 'ENOENT') {
+        cb(null, new gutil.File(opts));
+      } else {
+        cb(err);
+      }
+      return;
+    }
+    cb(null, manifest);
+  });
 }
 
 
-function processFile(file, enc, cb) {
-  if (file.isStream()) {
-    cb(new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
-    return;
-  }
+module.exports = function(opts) {
 
-  if (file.isNull() || !file.isBuffer()) {
+  var opts = objectAssign({
+    manifest: 'manifest.json',
+    merge: false
+  }, opts);
+
+  opts.path = opts.manifest;
+
+  var files = {};
+  var manifest = {
+    assets: {},
+    files: {}
+  };
+
+
+  function processFile(file, enc, cb) {
+    if (file.isStream()) {
+      cb(new gutil.PluginError(PLUGIN_NAME, 'Streaming not supported'));
+      return;
+    }
+
+    if (file.isNull() || !file.isBuffer()) {
+      cb(null, file);
+      return;
+    }
+
+    var oldName = file.path.replace(file.base, '');
+    transformFilename(file);
+    files[oldName] = file;
+
     cb(null, file);
-    return;
   }
 
-  var oldPath = file.path
-  transformFilename(file);
-  storage.files[oldPath] = file.path;
 
-  cb(null, file);
-}
+  function writeManifest(cb) {
+    for (var file in files) {
+      addToManifest(manifest, file, files[file]);
+    }
 
+    getManifestFile(opts, function(err, manifestFile) {
+      if (err) {
+        cb(err);
+        return;
+      }
 
-function writeManifest(cb) {
-  console.log(storage);
-  cb();
-}
+      manifestFile.contents = new Buffer(JSON.stringify(manifest, null, '  '));
+      this.push(manifestFile);
 
+      cb();
+    }.bind(this));
+  }
 
-module.exports = function() {
   return through.obj(processFile, writeManifest);
 };
