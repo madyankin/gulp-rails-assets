@@ -2,19 +2,26 @@
 	"files": {
 		"foo-d41d8cd9.js": {
 			"logical_path": "foo.js",
-			"mtime": "2014-11-21T06:21:52.000Z",
+			"mtime": "2015-02-10T08:15:40.000Z",
 			"size": 0,
 			"digest": "d41d8cd9"
 		},
 		"foo-a54dd39f.css": {
 			"logical_path": "foo.css",
-			"mtime": "2014-11-21T06:21:52.000Z",
-			"size": 0,
+			"mtime": "2015-02-10T08:15:34.000Z",
+			"size": 8,
 			"digest": "a54dd39f"
-		}
+		},
+    "dir/bar-d41d8cd9.css": {
+      "logical_path": "dir/bar.css",
+      "mtime": "2015-02-10T09:02:28.000Z",
+      "size": 0,
+      "digest": "d41d8cd9"
+    },
 	},
 	"assets": {
 		"foo.js": "foo-d41d8cd9.js",
-		"foo.css": "foo-a54dd39f.css"
+    "foo.css": "foo-a54dd39f.css",
+		"dir/bar.css": "dir/bar-d41d8cd9.css"
 	}
 }

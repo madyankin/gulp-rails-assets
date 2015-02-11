@@ -1,11 +1,11 @@
 {
 	"files": {
-		"foo-a41d8cd1.js": {
-			"logical_path": "foo.js",
-			"mtime": "2014-11-21T06:21:52.000Z",
-			"size": 0,
-			"digest": "a41d8cd1"
-		},
+    "foo-d41d8cd9.js": {
+      "logical_path": "foo.js",
+      "mtime": "2015-02-10T08:15:40.000Z",
+      "size": 0,
+      "digest": "d41d8cd9"
+    },
 		"foo-d41d8cd9.css": {
 			"logical_path": "foo.css",
 			"mtime": "2014-11-21T06:21:52.000Z",
@@ -14,7 +14,7 @@
 		}
 	},
 	"assets": {
-		"foo.js": "foo-a41d8cd1.js",
+		"foo.js": "foo-d41d8cd9.js",
 		"foo.css": "foo-d41d8cd9.css"
 	}
 }
