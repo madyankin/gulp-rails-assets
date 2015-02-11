@@ -58,32 +58,10 @@ function mergeManifest(oldManifest, manifest) {
 }
 
 
-function getManifestFile(opts, cb) {
-  file.read(opts.path, opts, function(err, manifest) {
-    if (err) {
-      if (err.code === 'ENOENT') {
-        cb(null, new gutil.File(opts));
-      } else {
-        cb(err);
-      }
-      return;
-    }
-    cb(null, manifest);
-  });
-}
-
-
 module.exports = function(opts) {
-
-  var opts = objectAssign({
-    manifest: 'manifest.json',
-    merge: false
-  }, opts);
-
-  opts.path = opts.manifest;
-
-  var files = {};
-  var manifest = {
+  var opts      = opts || {};
+  var files     = {};
+  var manifest  = {
     assets: {},
     files: {}
   };
@@ -109,21 +87,14 @@ module.exports = function(opts) {
 
 
   function writeManifest(cb) {
-    for (var file in files) {
-      addToManifest(manifest, file, files[file]);
+    if (!opts.manifest) {
+      cb(new gutil.PluginError(PLUGIN_NAME, 'Manifest path not specified'));
+      return;
     }
 
-    getManifestFile(opts, function(err, manifestFile) {
-      if (err) {
-        cb(err);
-        return;
-      }
-
-      manifestFile.contents = new Buffer(JSON.stringify(manifest, null, '  '));
-      this.push(manifestFile);
-
-      cb();
-    }.bind(this));
+    for (var file in files) addToManifest(manifest, file, files[file]);
+    fs.writeFileSync(opts.manifest, JSON.stringify(manifest, null, '  '));
+    cb();
   }
 
   return through.obj(processFile, writeManifest);

@@ -16,7 +16,7 @@ gulp.task('test', ['assets'], function() {
 
 gulp.task('assets', ['clean'], function() {
   return gulp.src('test/assets/**/*.{js,css}')
-    .pipe(assets())
+    .pipe(assets({manifest: 'tmp/manifest.json'}))
     .pipe(gulp.dest('tmp'));
 });
 
