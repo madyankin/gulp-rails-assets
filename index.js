@@ -59,13 +59,8 @@ function mergeManifest(oldManifest, manifest) {
 
 
 module.exports = function(opts) {
-  var opts      = opts || {};
-  var files     = {};
-  var manifest  = {
-    assets: {},
-    files: {}
-  };
-
+  var opts  = opts || {};
+  var files = {};
 
   function processFile(file, enc, cb) {
     if (file.isStream()) {
@@ -85,15 +80,16 @@ module.exports = function(opts) {
     cb(null, file);
   }
 
-
   function writeManifest(cb) {
     if (!opts.manifest) {
       cb(new gutil.PluginError(PLUGIN_NAME, 'Manifest path not specified'));
       return;
     }
 
+    var manifest = {assets: {}, files: {}};
     for (var file in files) addToManifest(manifest, file, files[file]);
     fs.writeFileSync(opts.manifest, JSON.stringify(manifest, null, '  '));
+
     cb();
   }
 
