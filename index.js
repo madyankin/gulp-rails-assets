@@ -15,7 +15,7 @@ var storage = {
 
 
 function getHash(str) {
-  return crypto.createHash('md5').update(str).digest('hex').slice(0, 8);
+  return crypto.createHash('md5').update(str).digest('hex');
 }
 
 

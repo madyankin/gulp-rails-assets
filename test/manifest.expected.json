@@ -1,27 +1,27 @@
 {
 	"files": {
-		"foo-d41d8cd9.js": {
+		"foo-d41d8cd98f00b204e9800998ecf8427e.js": {
 			"logical_path": "foo.js",
 			"mtime": "2015-02-10T08:15:40.000Z",
 			"size": 0,
-			"digest": "d41d8cd9"
+			"digest": "d41d8cd98f00b204e9800998ecf8427e"
 		},
-		"foo-a54dd39f.css": {
+		"foo-a54dd39f86b3ef34bc57c1d778476f7f.css": {
 			"logical_path": "foo.css",
 			"mtime": "2015-02-10T08:15:34.000Z",
 			"size": 8,
-			"digest": "a54dd39f"
+			"digest": "a54dd39f86b3ef34bc57c1d778476f7f"
 		},
-    "dir/bar-d41d8cd9.css": {
+    "dir/bar-d41d8cd98f00b204e9800998ecf8427e.css": {
       "logical_path": "dir/bar.css",
       "mtime": "2015-02-10T09:02:28.000Z",
       "size": 0,
-      "digest": "d41d8cd9"
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
     },
 	},
 	"assets": {
-		"foo.js": "foo-d41d8cd9.js",
-    "foo.css": "foo-a54dd39f.css",
-		"dir/bar.css": "dir/bar-d41d8cd9.css"
+		"foo.js": "foo-d41d8cd98f00b204e9800998ecf8427e.js",
+    "foo.css": "foo-a54dd39f86b3ef34bc57c1d778476f7f.css",
+		"dir/bar.css": "dir/bar-d41d8cd98f00b204e9800998ecf8427e.css"
 	}
 }

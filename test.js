@@ -9,13 +9,15 @@ var sourceDir = './test';
 var assetsDir = './test/assets';
 var destDir   = './tmp';
 
+
 function getHash(str) {
-  return crypto.createHash('md5').update(str).digest('hex').slice(0, 8);
+  return crypto.createHash('md5').update(str).digest('hex');
 }
+
 
 it('copies hashed files', function() {
   var files = fs.readdirSync(destDir);
-  var hash  = getHash(fs.readFileSync(assetsDir + '/foo.css'));
+  var hash = getHash(fs.readFileSync(assetsDir + '/foo.css'));
   assert(files.indexOf('foo-' + hash + '.css') > -1);
 });
 
@@ -28,7 +30,8 @@ it('respect directory structure', function() {
 
 
 it('generates manifest', function() {
-
+  var files = fs.readdirSync(destDir);
+  assert(files.indexOf('manifest.json') > -1);
 });
 
 
