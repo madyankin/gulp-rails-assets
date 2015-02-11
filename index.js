@@ -6,7 +6,6 @@ var fs            = require('fs');
 var gutil         = require('gulp-util');
 var through       = require('through2');
 var objectAssign  = require('object-assign');
-var file          = require('vinyl-file');
 
 var PLUGIN_NAME   = 'gulp-rails-manifest';
 
