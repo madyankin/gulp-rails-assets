@@ -1,0 +1,20 @@
+{
+	"files": {
+		"foo-d41d8cd9.js": {
+			"logical_path": "foo.js",
+			"mtime": "2014-11-21T06:21:52.000Z",
+			"size": 0,
+			"digest": "d41d8cd9"
+		},
+		"foo-a54dd39f.css": {
+			"logical_path": "foo.css",
+			"mtime": "2014-11-21T06:21:52.000Z",
+			"size": 0,
+			"digest": "a54dd39f"
+		}
+	},
+	"assets": {
+		"foo.js": "foo-d41d8cd9.js",
+		"foo.css": "foo-a54dd39f.css"
+	}
+}

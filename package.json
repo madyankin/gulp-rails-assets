@@ -1,0 +1,47 @@
+{
+  "name": "gulp-rails-assets",
+  "version": "0.1.0",
+  "description": "Rails assets pipeline replacement for Gulp",
+  "license": "MIT",
+  "repository": "outpunk/gulp-rails-assets",
+  "author": {
+    "name": "Alexander Madyankin",
+    "email": "alexander@madyankin",
+    "url": "http://madyankin.name"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin",
+    "hash",
+    "optimize",
+    "version",
+    "versioning",
+    "cache",
+    "cachebuster",
+    "rails",
+    "asset",
+    "assets",
+    "manifest"
+  ],
+  "dependencies": {
+    "gulp-util": "^3.0.0",
+    "object-assign": "^2.0.0",
+    "through2": "^0.6.1",
+    "vinyl-file": "^1.1.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-clean": "^0.3.1",
+    "gulp-jscs": "^1.4.0",
+    "gulp-mocha": "^2.0.0",
+    "mocha": "^2.1.0"
+  }
+}
