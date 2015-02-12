@@ -1,0 +1,23 @@
+{
+  "foo.js": {
+    "newName": "foo-1111111111111.js",
+    "oldName": "foo.js",
+    "mtime": "2015-02-10T08:15:40.000Z",
+    "size": 0,
+    "hash": "1111111111111"
+  },
+  "foo.css": {
+    "newName": "foo-222222222222.css",
+    "oldName": "foo.css",
+    "mtime": "2015-02-10T08:15:34.000Z",
+    "size": 8,
+    "hash": "222222222222"
+  },
+  "dir/bar.css": {
+    "newName": "dir/bar-33333333333.css",
+    "oldName": "dir/bar.css",
+    "mtime": "2015-02-10T09:02:28.000Z",
+    "size": 0,
+    "hash": "33333333333"
+  }
+}

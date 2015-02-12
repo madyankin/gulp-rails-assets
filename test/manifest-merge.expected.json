@@ -17,11 +17,17 @@
       "mtime": "2015-02-10T09:02:28.000Z",
       "size": 0,
       "digest": "33333333333"
+    },
+    "foo-555555555555.css": {
+      "logical_path": "foo.css",
+      "mtime": "2015-03-10T08:15:34.000Z",
+      "size": 8,
+      "digest": "555555555555"
     }
   },
   "assets": {
     "foo.js": "foo-1111111111111.js",
-    "foo.css": "foo-222222222222.css",
+    "foo.css": "foo-555555555555.css",
     "dir/bar.css": "dir/bar-33333333333.css"
   }
 }
