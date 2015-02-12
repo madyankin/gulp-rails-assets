@@ -4,27 +4,23 @@ var crypto    = require('crypto');
 var fs        = require('fs');
 var assert    = require('assert');
 var gutil     = require('gulp-util');
+var helpers   = require('./lib/helpers');
 
 var sourceDir = './test';
 var assetsDir = './test/assets';
 var destDir   = './tmp';
 
 
-function getHash(str) {
-  return crypto.createHash('md5').update(str).digest('hex');
-}
-
-
 it('copies hashed files', function() {
   var files = fs.readdirSync(destDir);
-  var hash = getHash(fs.readFileSync(assetsDir + '/foo.css'));
+  var hash = helpers.hash(fs.readFileSync(assetsDir + '/foo.css'));
   assert(files.indexOf('foo-' + hash + '.css') > -1);
 });
 
 
 it('respect directory structure', function() {
   var files = fs.readdirSync(destDir + '/dir');
-  var hash  = getHash(fs.readFileSync(assetsDir + '/dir/bar.css'));
+  var hash  = helpers.hash(fs.readFileSync(assetsDir + '/dir/bar.css'));
   assert(files.indexOf('bar-' + hash + '.css') > -1);
 });
 
@@ -36,7 +32,6 @@ it('generates manifest', function() {
 
 
 it('merges manifest with existing one', function() {
-
 });
 
 

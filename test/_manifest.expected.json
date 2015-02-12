@@ -6,6 +6,12 @@
       "size": 0,
       "digest": "d41d8cd98f00b204e9800998ecf8427e"
     },
+    "foo-d41d8cd98f00b204e9800998ecf84272.css": {
+      "logical_path": "foo.css",
+      "mtime": "2014-11-21T06:21:52.000Z",
+      "size": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf84272"
+    },
     "foo-a54dd39f86b3ef34bc57c1d778476f7f.css": {
       "logical_path": "foo.css",
       "mtime": "2015-02-10T08:15:34.000Z",
