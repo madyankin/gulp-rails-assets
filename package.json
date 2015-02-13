@@ -1,7 +1,7 @@
 {
   "name": "gulp-rails-assets",
   "version": "0.1.0",
-  "description": "Rails assets pipeline replacement for Gulp",
+  "description": "Rails assets manifest management for Gulp",
   "license": "MIT",
   "repository": "outpunk/gulp-rails-assets",
   "author": {
@@ -16,7 +16,10 @@
     "test": "mocha"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "lib/*",
+    "LICENSE.txt",
+    "README.md"
   ],
   "keywords": [
     "gulpplugin",
