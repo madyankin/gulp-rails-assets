@@ -37,8 +37,18 @@ module.exports = function(opts) {
       return;
     }
 
-    fs.writeFileSync(opts.manifest, manifest(files).toString());
-    cb();
+    fs.exists(opts.manifest, function(exists) {
+      var newManifest = manifest(files);
+
+      if (exists) {
+        var existingManifest = manifest(require(opts.manifest));
+        existingManifest.merge(newManifest.toJSON());
+        newManifest = existingManifest;
+      }
+
+      fs.writeFileSync(opts.manifest, newManifest.toString());
+      cb();
+    });
   }
 
   return through.obj(processFile, writeManifest);

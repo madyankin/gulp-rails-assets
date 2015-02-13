@@ -68,7 +68,7 @@ it('merges manifest with existing one', function() {
   var filesMerge      = require('./test/files-merge.json');
   var expected        = require('./test/manifest-merge.expected.json');
   var manifestObject  = manifest(files);
-  var res             = manifestObject.merge(manifest(filesMerge))
+  var res             = manifestObject.merge(manifest(filesMerge).toJSON())
 
   assert.deepEqual(res, expected);
 });
